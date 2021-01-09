@@ -1,0 +1,14 @@
+﻿@{
+
+    string template = "";
+    var controller = HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"].ToString();
+    if (controller == "Security" ) {
+        template = "~/Views/Shared/_LayoutLogin.cshtml";
+    }
+    else
+    {
+        template = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    Layout = template;
+}

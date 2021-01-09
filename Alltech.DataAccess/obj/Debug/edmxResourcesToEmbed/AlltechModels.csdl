@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AlltechDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id_cat" />
+    </Key>
+    <Property Name="Id_cat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="libellle_cat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="date_entries" Type="DateTime" Nullable="false" Precision="7" />
+    <NavigationProperty Name="Product" Relationship="Self.FK__Product__categor__276EDEB3" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id_prod" />
+    </Key>
+    <Property Name="Id_prod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_prod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="category_prod" Type="Int32" Nullable="false" />
+    <Property Name="desc_prod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="quantity_prod" Type="Int32" Nullable="false" />
+    <Property Name="price_prod" Type="Int32" Nullable="false" />
+    <Property Name="status_prod" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Category" Relationship="Self.FK__Product__categor__276EDEB3" FromRole="Product" ToRole="Category" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id_user" />
+    </Key>
+    <Property Name="Id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Product__categor__276EDEB3">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id_cat" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="category_prod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AlltechDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Category" EntityType="Self.Category" />
+    <EntitySet Name="Product" EntityType="Self.Product" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <AssociationSet Name="FK__Product__categor__276EDEB3" Association="Self.FK__Product__categor__276EDEB3">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

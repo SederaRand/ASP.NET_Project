@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AlltechModelStoreContainer" CdmEntityContainer="AlltechEntities">
+    <EntitySetMapping Name="Category">
+      <EntityTypeMapping TypeName="AlltechModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="Id_cat" ColumnName="Id_cat" />
+          <ScalarProperty Name="libellle_cat" ColumnName="libellle_cat" />
+          <ScalarProperty Name="date_entries" ColumnName="date_entries" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="AlltechModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="Id_prod" ColumnName="Id_prod" />
+          <ScalarProperty Name="name_prod" ColumnName="name_prod" />
+          <ScalarProperty Name="category_prod" ColumnName="category_prod" />
+          <ScalarProperty Name="desc_prod" ColumnName="desc_prod" />
+          <ScalarProperty Name="quantity_prod" ColumnName="quantity_prod" />
+          <ScalarProperty Name="price_prod" ColumnName="price_prod" />
+          <ScalarProperty Name="status_prod" ColumnName="status_prod" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="AlltechModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Id_user" ColumnName="Id_user" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
