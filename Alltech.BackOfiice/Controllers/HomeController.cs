@@ -17,6 +17,6 @@ namespace Alltech.BackOfiice.Controllers
             return View();
         }
 
-      
+
     }
 }

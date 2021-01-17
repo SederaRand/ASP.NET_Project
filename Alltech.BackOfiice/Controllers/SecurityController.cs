@@ -146,7 +146,7 @@ namespace Alltech.BackOfiice.Controllers
                     {
                         case SignInStatus.Success:
                             Session["User"] = user;
-                            return RedirectToAction("Index", "Home");
+                            return RedirectToAction("Index", "Products");
 
                         //Si l'utilisateur n'est pas reconnu
                         default:

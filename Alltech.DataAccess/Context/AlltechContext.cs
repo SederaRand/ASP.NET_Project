@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Alltech.DataAccess.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -19,8 +20,7 @@ namespace Alltech.DataAccess.Context
         {
             return new AlltechContext();
         }
-
-         
+    
 
     }
 }
