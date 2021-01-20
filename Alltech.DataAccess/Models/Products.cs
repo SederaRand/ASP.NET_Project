@@ -27,8 +27,9 @@ namespace Alltech.DataAccess.Models
 
         [Required]
         public decimal Price_prod { get; set; }
-
+       
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Date_entry_Prod { get; set; }
 
 

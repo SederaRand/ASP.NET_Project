@@ -254,3 +254,4 @@ C:\Users\Dev\source\repos\AlltechSolution\Alltech.BackOfiice\obj\Debug\Alltech.B
 C:\Users\Dev\source\repos\AlltechSolution\Alltech.BackOfiice\obj\Debug\Alltech.BackOffice.csproj.CopyComplete
 C:\Users\Dev\source\repos\AlltechSolution\Alltech.BackOfiice\obj\Debug\Alltech.BackOfiice.dll
 C:\Users\Dev\source\repos\AlltechSolution\Alltech.BackOfiice\obj\Debug\Alltech.BackOfiice.pdb
+C:\Users\Dev\source\repos\AlltechSolution\Alltech.BackOfiice\bin\System.Web.Cors.dll

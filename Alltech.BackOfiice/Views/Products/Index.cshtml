@@ -2,75 +2,64 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name_prod)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Desc_prod)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Category_prod)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Images)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Quantity_prod)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status_prod)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price_prod)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date_entry_Prod)
-        </th>
-        <th></th>
-    </tr>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name_prod)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Desc_prod)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category_prod)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Images)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quantity_prod)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status_prod)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price_prod)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date_entry_Prod)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id_prod }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id_prod }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id_prod })
-        </td>
-    </tr>
-}
+</head>
 
-</table>
+<body>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <!-- /.card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Products dispo</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Descriptions</th>
+                                        <th>Category</th>
+                                        <th>Images</th>
+                                        <th>Quantity</th>
+                                        <th>Status</th>
+                                        <th>Price</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr></tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+
+
+
+</body>
+</html>

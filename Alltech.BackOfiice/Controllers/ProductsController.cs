@@ -16,35 +16,10 @@ namespace Alltech.BackOfiice.Controllers
     {
         string baseUrl = "https://localhost:44301/";
         // GET: Products
-        public async Task<ActionResult> Index()
+        public  ActionResult Index()
         {
-            List<Products> products = new List<Products>();
+            return View();
 
-            using (var client = new HttpClient())
-            {
-                //Passing service base url  
-                client.BaseAddress = new Uri(baseUrl);
-
-                client.DefaultRequestHeaders.Clear();
-                //Define request data format  
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
-                HttpResponseMessage Res = await client.GetAsync("api/Products");
-
-                if (Res.IsSuccessStatusCode)
-                {
-                    //Storing the response details recieved from web api   
-                    var EmpResponse = Res.Content.ReadAsStringAsync().Result;
-
-                    //Deserializing the response recieved from web api and storing into the Employee list  
-                    products = JsonConvert.DeserializeObject<List<Products>>(EmpResponse);
-
-                }
-                return View(products);
-            }
-
-           
         }
 
         public async Task<ActionResult> Details(int id)
@@ -91,7 +66,7 @@ namespace Alltech.BackOfiice.Controllers
                 client.BaseAddress = new Uri(baseUrl);
 
                 //HTTP POST
-                var postTask = client.PostAsJsonAsync<Products>("api/Products", product);
+                var postTask = client.PostAsJsonAsync<Products>("api/Products/", product);
                 postTask.Wait();
 
                 var result = postTask.Result;
@@ -105,15 +80,9 @@ namespace Alltech.BackOfiice.Controllers
 
             return View(product);
         }
-
-
-
-
-
-
-
-
-        public ActionResult Edit(int id)
+                                   
+        
+        public async Task<ActionResult> Edit(int id)
         {
             Products products = null;
 
@@ -124,9 +93,8 @@ namespace Alltech.BackOfiice.Controllers
 
                 client.DefaultRequestHeaders.Clear();                
 
-                var stringContent = new StringContent(JsonConvert.SerializeObject(products), Encoding.UTF8, "application/json");
                 //HTTP GET
-                var responseTask = client.PostAsync("api/Porducts?id=" + id.ToString(), stringContent);
+                var responseTask = client.GetAsync("api/Products/" + id);
                 responseTask.Wait();
 
                 var Res = responseTask.Result;
@@ -134,16 +102,33 @@ namespace Alltech.BackOfiice.Controllers
                 if (Res.IsSuccessStatusCode)
                 {
                     //Storing the response details recieved from web api   
-                    var EmpResponse = Res.Content.ReadAsStringAsync().Result;
+                    var EmpResponse = Res.Content.ReadAsAsync<Products>();
+                    EmpResponse.Wait();
 
-                    //Deserializing the response recieved from web api and storing into the Employee list  
-                    products = JsonConvert.DeserializeObject<Products>(EmpResponse);
-
+                    products = EmpResponse.Result;
                 }
                 return View(products);
             }
         }
 
+        [HttpPost]
+        public async Task<ActionResult> Edit(Products product, int Id)
+        {
+            Products products = new Products();
+            using (var client = new HttpClient())
+            {
+                //Passing service base url  
+                client.BaseAddress = new Uri(baseUrl);
+
+                HttpResponseMessage response = await client.PutAsJsonAsync("api/Products/" + Id, product);
+                response.EnsureSuccessStatusCode();
+               
+                product = await response.Content.ReadAsAsync<Products>();
+
+                return RedirectToAction("Index");
+             }
+          
+        }
 
 
         public ActionResult Delete(int id)

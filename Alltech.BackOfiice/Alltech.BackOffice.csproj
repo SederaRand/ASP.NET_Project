@@ -170,6 +170,9 @@
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -243,6 +246,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\SecurityController.cs" />
+    <Compile Include="Cors\AllowCrossSiteAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -251,14 +255,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="images\AdminLTELogo.png" />
+    <Content Include="Content\admin\style.css" />
+    <Content Include="Images\AdminLTELogo.png" />
     <Content Include="Content\adminlte.min.css" />
     <Content Include="Content\admin\buttons.bootstrap4.min.css" />
     <Content Include="Content\admin\cs-skin-elastic.css" />
     <Content Include="Content\admin\dataTables.bootstrap4.min.css" />
     <Content Include="Content\admin\flag-icon.min.css" />
     <Content Include="Content\admin\font-awesome.min.css" />
-    <Content Include="Content\admin\style.css" />
     <Content Include="Content\admin\themify-icons.css" />
     <Content Include="Content\all.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -268,6 +272,7 @@
     <Content Include="Content\buttons.bootstrap4.min.css" />
     <Content Include="Content\dataTables.bootstrap4.min.css" />
     <Content Include="Content\responsive.bootstrap4.min.css" />
+    <Content Include="Scripts\datetime.js" />
     <Content Include="webfonts\fa-brands-400.svg" />
     <Content Include="webfonts\fa-regular-400.svg" />
     <Content Include="webfonts\fa-solid-900.svg" />
@@ -275,9 +280,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="images\admin.jpg" />
-    <Content Include="images\avatar5.png" />
-    <Content Include="images\logo.png" />
+    <Content Include="Images\admin.jpg" />
+    <Content Include="Images\avatar5.png" />
+    <Content Include="Images\logo.png" />
     <Content Include="logo2.png" />
     <Content Include="Scripts\admin\adminlte.min.js" />
     <Content Include="Scripts\admin\bootstrap.bundle.min.js" />

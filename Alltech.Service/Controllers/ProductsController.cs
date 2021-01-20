@@ -7,10 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Alltech.DataAccess.Context;
 using Alltech.DataAccess.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace Alltech.Service.Controllers
 {
+
     [Route("api/[controller]")]
+  
     [ApiController]
     public class ProductsController : ControllerBase
     {

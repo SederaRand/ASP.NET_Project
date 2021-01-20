@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Sufee Admin - HTML5 Admin Template</title>
-    <asset:link rel="icon" href="~/images/AdminLTELogo.png" type="image/x-ico" />
+    <link rel="icon" href="~/Images/AdminLTELogo.png" type="image/x-ico" />
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="~/Content/all.min.css">
     <!-- DataTables -->
     <link rel="stylesheet" href="~/Content/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="~/Content//responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/Content/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="~/Content/buttons.bootstrap4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="~/Content/adminlte.min.css">
@@ -57,7 +57,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-            with font-awesome or any other icon font library -->
+                        with font-awesome or any other icon font library -->
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -78,26 +78,11 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1>Dashboard</h1>
-                        </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">DataTables</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div><!-- /.container-fluid -->
-            </section>
             <!-- Main content -->
             @RenderBody();
             <!-- /.content -->
         </div>
-        <!-- /.content-wrapper -->      
+        <!-- /.content-wrapper -->
 
     </div>
 
@@ -126,11 +111,8 @@
     <!-- Page specific script -->
     <script>
         $(function () {
-            $("#example1").DataTable({
-                "responsive": true, "lengthChange": false, "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
+            
+           $('#example1').DataTable({
                 "paging": true,
                 "processing": true,
                 "serverSide": true,
@@ -140,12 +122,72 @@
                 "info": true,
                 "autoWidth": false,
                 "responsive": true,
-               
+                "ajax": {
+                    "url": "https://localhost:44301/api/Products",
+                    "type": "GET",
+                    "dataType": "json"                   
+                },
+                "columnDefs": [{
+                    "targets": [0],
+                    "visible": false,
+                    "searchable": false
+                }],
+                "columns": [
+                    { "data": "Id_prod", "name":"ID Product", "autoWidth": true },
+                    { "data": "Name_prod", "name":"Name", "autoWidth": true },
+                    { "data": "Desc_prod", "name":"Description ", "autoWidth": true },
+                    { "data": "Category_prod", "name":"Category", "autoWidth": true },
+                    { "data": "Images", "name":"Images", "autoWidth": true },
+                    { "data": "Quantity_prod", "name":"Stock ", "autoWidth": true },
+                    { "data": "Status_prod", "name":"Publishing", "autoWidth": true },
+                    { "data": "Price_prod", "name":"Price", "autoWidth": true },
+                    { "data": "Date_entry_Prod", "name": "Date", "autoWidth": true },
+                    {
+                        "render": function (data, type, full, meta) { return '<a class="btn btn-info" href="/Products/Edit/' + full.CustomerID + '">Edit</a>'; }
+                    },
+                    {
+                        data: null, render: function (data, type, row) {
+                            return "<a href='#' class='btn btn-danger' onclick=DeleteData('" + row.CustomerID + "'); >Delete</a>";
+                        }
+                    },
+
+                ]
             });
         });
 
-       
-       
+        function DeleteData(CustomerID)
+        {
+            if (confirm("Are you sure you want to delete ...?"))
+            {
+                Delete(CustomerID);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        function Delete(CustomerID)
+    {
+        var url = '@Url.Content("~/")' + "DemoGrid/Delete";
+
+        $.post(url, { ID: CustomerID }, function (data)
+                {
+                    if (data)
+                    {
+                        oTable = $('#example').DataTable();
+                        oTable.draw();
+                    }
+                    else
+                    {
+                        alert("Something Went Wrong!");
+                    }
+                });
+    }
+
+
+
     </script>
 </body>
 </html>
