@@ -17,7 +17,7 @@ namespace Alltech.Api.Filter
         public PaginationFilter(int pageNumber, int pageSize)
         {
             this.PageNumber = pageNumber < 1 ? 1 : pageNumber;
-            this.PageSize = pageSize > 3 ? 3 : pageSize;
+            this.PageSize = pageSize > 2 ? 2 : pageSize;
         }
     }
 }

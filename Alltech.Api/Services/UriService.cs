@@ -1,4 +1,5 @@
 ﻿using Alltech.Api.Filter;
+using Alltech.Api.Interfaces;
 using Microsoft.AspNetCore.WebUtilities;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace Alltech.Api.Services
         {
             _baseUri = baseUri;
         }
+       
         public Uri GetPageUri(PaginationFilter filter, string route)
         {
             var _enpointUri = new Uri(string.Concat(_baseUri, route));

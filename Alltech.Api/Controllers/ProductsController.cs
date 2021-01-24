@@ -8,10 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Alltech.DataAccess.Context;
 using Alltech.DataAccess.Models;
 using Microsoft.AspNetCore.Cors;
-using Alltech.Api.Filter;
-using Alltech.Api.Wrapper;
-using Alltech.Api.Services;
-using Alltech.Api.Helpers;
+
 
 namespace Alltech.Api.Controllers
 {
@@ -21,28 +18,40 @@ namespace Alltech.Api.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly ApiContext _context;
-        private readonly IUriService uriService;
-        public ProductsController(ApiContext context, IUriService uriService)
+       public ProductsController(ApiContext context)
         {
             _context = context;
-            this.uriService = uriService;
+          
         }
 
         // GET: api/Products
-        [HttpGet]   
-        public async Task<IActionResult> GetProductsAsync([FromQuery] PaginationFilter filter)
+        [HttpGet]
+        [Produces("application/json")]
+        public async Task<ActionResult<IEnumerable<Products>>> GetProductsAsync([FromQuery]ParamsDatatable paramsDatatable)
         {
-            var route = Request.Path.Value;
-            var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
-            var pagedData = await _context.Products
-               .Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
-               .Take(validFilter.PageSize)
-               .ToListAsync();
-            var totalRecords = await _context.Products.CountAsync();
-            var pagedReponse = PaginationHelper.CreatePagedReponse<Products>(pagedData, validFilter, totalRecords, uriService, route);
-            return Ok(pagedReponse);
+            //var test = HttpContext.Request.Query;
+            //int dataTableOrderColumnIdx = Int32.Parse(HttpContext.Request.Query["order[0][column]"]);
+            //string dataTableOrderColumnName = HttpContext.Request.Query["column[" + dataTableOrderColumnIdx + "][data]"].ToString();
+
+            //paramsDatatable.sortName = HttpContext.Request.Query[dataTableOrderColumnName].ToString() ?? "Id_prod";
+            //paramsDatatable.sortDir = HttpContext.Request.Query["order[0][dir]"].ToString() ?? "Desc_prod";
+            //paramsDatatable.queryString = HttpContext.Request.Query["search[value]"].ToString();
+
+            var result = await _context.Products.ToListAsync();
+
+            var datatable = new DataTableModels<Products>()
+            {
+                draw = paramsDatatable.draw,
+                recordsTotal = this._context.Products.Count(),
+                recordsFiltered = this._context.Products.Count(),
+                data = result
+            };
+
+            return Ok(datatable);
         }
 
+
+     
         // GET: api/Products/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProducts([FromRoute] int id)
@@ -137,5 +146,6 @@ namespace Alltech.Api.Controllers
         {
             return _context.Products.Any(e => e.Id_prod == id);
         }
+     
     }
 }

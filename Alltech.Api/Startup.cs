@@ -1,3 +1,4 @@
+using Alltech.Api.Interfaces;
 using Alltech.Api.Services;
 using Alltech.DataAccess.Context;
 using Microsoft.AspNetCore.Builder;
@@ -19,7 +20,7 @@ namespace Alltech.Api
 {
     public class Startup
     {
-       // readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         public Startup(IConfiguration configuration)
         {
@@ -31,7 +32,14 @@ namespace Alltech.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
+            services.AddCors(options => {
+                options.AddPolicy(name: MyAllowSpecificOrigins, builder =>
+                {
+                    builder.AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                });
+            });
             services.AddDbContext<ApiContext>(options =>
                       options.UseSqlServer(Configuration.GetConnectionString("apiContext")));
             services.AddHttpContextAccessor();
@@ -59,11 +67,7 @@ namespace Alltech.Api
 
             // Shows UseCors with CorsPolicyBuilder.    
 
-            app.UseCors(x => x
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .SetIsOriginAllowed(origin => true) // allow any origin
-                .AllowCredentials()); // allow 
+            app.UseCors("MyAllowSpecificOrigins"); // allow 
 
             app.UseRouting();    
 

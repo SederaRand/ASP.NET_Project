@@ -1,4 +1,6 @@
-﻿using Alltech.DataAccess.Models;
+﻿using Alltech.BO.Cors;
+using Alltech.DataAccess.Models;
+using Microsoft.AspNetCore.Cors;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,49 +14,20 @@ using System.Web.Mvc;
 
 namespace Alltech.BO.Controllers
 {
-   
+    [Microsoft.AspNetCore.Cors.EnableCors("_myAllowSpecificOrigins")]
     public class ProductsController : Controller
     {
         string baseUrl = "https://localhost:44352/";
-        // GET: Products
-        public async Task<ActionResult> Index(string searchString)
+
+           
+        [HttpGet]
+        [Microsoft.AspNetCore.Cors.DisableCors]
+        public ActionResult Index()
         {
-            List<Products> products = new List<Products>();
-
-            using (var client = new HttpClient())
-            {
-                //Passing service base url  
-                client.BaseAddress = new Uri(baseUrl);
-
-                client.DefaultRequestHeaders.Clear();
-                //Define request data format  
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
-                HttpResponseMessage Res = await client.GetAsync("api/Products?pageNumber=1&pageSize=3");
-
-                if (Res.IsSuccessStatusCode)
-                {
-                    //Storing the response details recieved from web api   
-                    var EmpResponse = Res.Content.ReadAsStringAsync().Result;
-
-                    //Deserializing the response recieved from web api and storing into the Employee list  
-                    products = JsonConvert.DeserializeObject<List<Products>>(EmpResponse);                  
-
-                }
-
-                if (!String.IsNullOrEmpty(searchString))
-                {
-                    products = products.Where(s => s.Name_prod.Contains(searchString)
-                                           || s.Desc_prod.Contains(searchString)).ToList();
-                }
-                return View(products);
-            }        
-
+            return View();
         }
-
-       
-
+        // GET: Products
+        
         public async Task<ActionResult> Details(int id)
         {
             Products products = new Products();

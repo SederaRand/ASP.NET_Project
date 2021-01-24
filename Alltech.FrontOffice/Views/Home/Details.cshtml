@@ -1,0 +1,77 @@
+﻿@model Alltech.DataAccess.Models.Products
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<header class="header bg-white">
+    <div class="container px-0 px-lg-3">
+        <nav class="navbar navbar-expand-lg navbar-light py-3 px-lg-0">
+            <a class="navbar-brand" href="#"><span class="font-weight-bold text-uppercase text-dark">Boutique</span></a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <!-- Link--><a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- Link--><a class="nav-link" asp-controller="Home" asp-action="Shop">Shop</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="#"> <i class="fas fa-user-alt mr-1 text-gray"></i>Login</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+<section class="py-5">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-6">
+                <!-- PRODUCT SLIDER-->
+                <div class="row m-sm-0">
+                    <div class="col-sm-10 order-1 order-sm-2">
+                        <div class="owl-carousel product-slider" data-slider-id="1">
+                            <a class="d-block" href="@Html.DisplayFor(modelItem => Model.Images)" data-lightbox="product" title="Product item 1">
+                                <img class="img-fluid" src="@Html.DisplayFor(modelItem => Model.Images)" alt="...">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- PRODUCT DETAILS-->
+            <div class="col-lg-6">
+                <ul class="list-inline mb-2">
+                    <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
+                    <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
+                    <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
+                    <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
+                    <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
+                </ul>
+                <h1>@Html.DisplayFor(model => model.Name_prod)</h1>
+                <p class="text-muted lead">$250</p>
+                <p class="text-small mb-4">@Html.DisplayFor(model => model.Desc_prod)</p>
+                <div class="row align-items-stretch mb-4">
+                    <div class="col-sm-5 pr-sm-0">
+                        <div class="border d-flex align-items-center justify-content-between py-1 px-3 bg-white border-white">
+                            <span class="small text-uppercase text-gray mr-4 no-select">Stock</span>
+                            <div class="quantity">
+                                @Html.DisplayFor(model => model.Quantity_prod)
+                                <!-- <input class="form-control border-0 shadow-0 p-0" type="text" value="1"> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 pl-sm-0"><a class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" href="cart.html">Add to cart</a></div>
+                </div><a class="btn btn-link text-dark p-0 mb-4" href="#"><i class="far fa-heart mr-2"></i>Add to wish list</a><br>
+                <ul class="list-unstyled small d-inline-block">
+                     <li class="px-3 py-2 mb-1 bg-white text-muted"><strong class="text-uppercase text-dark">Category:</strong><a class="reset-anchor ml-2" href="#">@Html.DisplayNameFor(model => model.Category_prod)</a></li>
+                   
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

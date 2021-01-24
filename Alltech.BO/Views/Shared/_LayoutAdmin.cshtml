@@ -48,7 +48,7 @@
                                 <img src="~/images/avatar5.png" class="img-circle elevation-2" alt="User Image">
                             </div>
                             <div class="info">
-                                <a href="#" class="d-block"> @Html.ActionLink(HttpContext.Current.User.Identity.Name, "Lougout", "Account")</a>
+                                <a href="#" class="d-block"> @Html.ActionLink(HttpContext.Current.User.Identity.Name, "LogOut", "Security")</a>
                             </div>
                         </div> }
                 }
@@ -109,6 +109,7 @@
     <!-- AdminLTE for demo purposes -->
     <script src="~/Scripts/admin/demo.js"></script>
     <!-- Page specific script -->
-   
+    @Scripts.Render("~/bundles/Cors")
+    @RenderSection("Cors", required: false)
 </body>
 </html>
