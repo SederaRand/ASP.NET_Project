@@ -44,13 +44,13 @@ namespace Alltech.Api.Controllers
             var route = Request.Path.Value;
             var validFilter = new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize);
             var pagedData = await _context.Products
-                            .Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
+                            .Skip((validFilter.PageNumber -1) * validFilter.PageSize)
                             .Take(validFilter.PageSize)
-                            .ToListAsync();
+                            .ToListAsync();           
             var totalRecords = await _context.Products.CountAsync();
             var pagedReponse = PaginationHelpers.CreatePagedReponse<Products>(pagedData, validFilter, totalRecords, uriService, route);
-            return Ok(pagedReponse);
-        }
+            return Ok(pagedData);
+        }   
 
 
         // GET: api/HomeProducts/5

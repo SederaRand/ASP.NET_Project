@@ -49,8 +49,9 @@ namespace Alltech.FrontOffice.Controllers
             }
         }
 
-        public async Task<ActionResult<IEnumerable<Products>>> Shop()
+        public async Task<ActionResult> Shop(int pageNumber, int pageSize)
         {
+            //?pageNumber=2&pageSize=2
             List<Products> products = new List<Products>();
 
             using (var client = new HttpClient())
@@ -62,18 +63,19 @@ namespace Alltech.FrontOffice.Controllers
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
-                HttpResponseMessage Res = await client.GetAsync("api/HomeProducts/catalogue");
+                HttpResponseMessage Res = await client.GetAsync("api/HomeProducts/catalogue?pageNumber= " + pageNumber);
+                //  + pageNumber + "&pageSize=" + pageSize
                 if (Res.IsSuccessStatusCode)
                 {
                     //Storing the response details recieved from web api   
                     var EmpResponse = Res.Content.ReadAsStringAsync().Result;
 
                     //Deserializing the response recieved from web api and storing into the Employee list  
-                   // products = JsonConvert.DeserializeObject<List<Products>>(EmpResponse);
+                    products = JsonConvert.DeserializeObject<List<Products>>(EmpResponse);
 
                 }
 
-                return View(Res);
+                return View(products);
 
             }
         }
