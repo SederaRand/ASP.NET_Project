@@ -199,10 +199,8 @@ C:\Users\Dev\source\repos\AlltechSolution\Alltech.BO\obj\Debug\Alltech.BO.csproj
 C:\Users\Dev\source\repos\AlltechSolution\Alltech.BO\obj\Debug\Alltech.BO.csproj.CopyComplete
 C:\Users\Dev\source\repos\AlltechSolution\Alltech.BO\obj\Debug\Alltech.BO.dll
 C:\Users\Dev\source\repos\AlltechSolution\Alltech.BO\obj\Debug\Alltech.BO.pdb
-C:\Users\Dev\source\repos\AlltechSolution\Alltech.BO\bin\Microsoft.AspNetCore.Cors.dll
-C:\Users\Dev\source\repos\AlltechSolution\Alltech.BO\bin\System.Web.Cors.dll
-C:\Users\Dev\source\repos\AlltechSolution\Alltech.BO\bin\System.Web.Http.Cors.dll
 C:\Users\Dev\source\repos\AlltechSolution\Alltech.BO\bin\System.Web.Http.dll
-C:\Users\Dev\source\repos\AlltechSolution\Alltech.BO\bin\Microsoft.AspNetCore.Cors.xml
 C:\Users\Dev\source\repos\AlltechSolution\Alltech.BO\bin\System.Web.Http.xml
-C:\Users\Dev\source\repos\AlltechSolution\Alltech.BO\bin\System.Web.Http.Cors.xml
+C:\Users\Dev\source\repos\AlltechSolution\Alltech.BO\bin\Microsoft.Owin.Cors.dll
+C:\Users\Dev\source\repos\AlltechSolution\Alltech.BO\bin\System.Web.Cors.dll
+C:\Users\Dev\source\repos\AlltechSolution\Alltech.BO\bin\Microsoft.Owin.Cors.xml

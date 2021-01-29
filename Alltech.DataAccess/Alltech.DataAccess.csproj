@@ -148,7 +148,6 @@
     <Compile Include="DataAcces\ApplicationDbContext.cs" />
     <Compile Include="DataAcces\ApplicationUserManager.cs" />
     <Compile Include="DataAcces\SiginManager.cs" />
-    <Compile Include="Models\Categories.cs" />
     <Compile Include="Models\DataTableModels.cs" />
     <Compile Include="Models\ParamsDatatable.cs" />
     <Compile Include="Models\Products.cs" />

@@ -5,37 +5,55 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+
+<!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Products</h1>
+                <h1>Dashboard</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item active"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">List</li>
                 </ol>
             </div>
         </div>
     </div><!-- /.container-fluid -->
 </section>
+
+
+
+
+
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <!-- /.row -->
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Products</h3>
+                    <div class="card-header">                        
+                        <div class="card-tools">
+                            <a href="@Url.Action("Create","Products")">
+                                <button type="button" class="btn btn-success btn-block btn-sm"><i class="fa fa-plus"></i></button>
+                            </a>
+                           <!-- <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div> -->
+
+                        </div>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body">
-                        <table id="example2" class="table table-bordered table-striped">
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
-                                    <th>
-                                        ID
-                                    </th>
                                     <th>
                                         Name
                                     </th>
@@ -55,27 +73,70 @@
                                         Status
                                     </th>
                                     <th>
-                                        Price
+                                        Price (Euro)
                                     </th>
-                                    <th>
-                                        Date
-                                    </th>
+                               
+                                    <th style="width: 40px"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>                                   
-                                </tr>                    
-                            </tbody>
-                          
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name_prod)
+                                    </td>                                                                  
+                                    <td>                                     
+                                        @Html.DisplayFor(modelItem => item.Desc_prod)                                       
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Category_prod)
+                                    </td>
+                                    <td>
+                                        <img src=" @Html.DisplayFor(modelItem => item.Images)" width="75px" height="75px" />                                       
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Quantity_prod)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Status_prod)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Price_prod)
+                                    </td>
+                                   
+                                    <td>
+
+                                        <span class="badge bg-warning">
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.Id_prod })
+                                        </span>                                        
+                                        <span class="badge bg-danger">
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.Id_prod })
+                                        </span>
+                                    </td>
+                                </tr>
+                                }
+                                </tbody>
                         </table>
                     </div>
-                    <!-- /.card-body -->
+                    <!-- /.card-body 
+                    <div class="card-footer clearfix">
+                        <ul class="pagination pagination-sm m-0 float-right">
+                            <li class="page-item"><a class="page-link" aria-label="Previous" asp-action="Shop" asp-route-pageNumber="1" asp-route-pageSize="2"><span aria-hidden="true">«</span></a></li>
+
+                            <li class="page-item active"><a class="page-link" asp-route-pageNumber="1" asp-route-pageSize="2">1</a></li>
+                            <li class="page-item"><a class="page-link" asp-action="Shop" asp-route-pageNumber="2" asp-route-pageSize="2">2</a></li>
+
+                            <li class="page-item"><a class="page-link" asp-action="Shop" asp-route-pageNumber="2" asp-route-pageSize="2" asparia-label="Next"><span aria-hidden="true">»</span></a></li>
+                        </ul>
+                    </div>
+
                 </div>
+                /.card -->               
             </div>
-            <!-- /.card -->
         </div>
-        <!-- /.row -->
     </div>
-
-</section>
-
+</section>   
+               
+           
+        

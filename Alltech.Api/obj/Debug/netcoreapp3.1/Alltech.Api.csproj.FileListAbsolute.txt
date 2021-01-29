@@ -1,3 +1,8 @@
+C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\obj\Debug\netcoreapp3.1\Alltech.Api.csprojAssemblyReference.cache
+C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\obj\Debug\netcoreapp3.1\Alltech.Api.AssemblyInfoInputs.cache
+C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\obj\Debug\netcoreapp3.1\Alltech.Api.AssemblyInfo.cs
+C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\obj\Debug\netcoreapp3.1\Alltech.Api.csproj.CoreCompileInputs.cache
+C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\obj\Debug\netcoreapp3.1\Alltech.Api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\bin\Debug\netcoreapp3.1\Alltech.Api.exe
@@ -160,11 +165,6 @@ C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\bin\Debug\netcoreapp3.1\Mi
 C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\bin\Debug\netcoreapp3.1\Microsoft.Owin.Security.xml
 C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\bin\Debug\netcoreapp3.1\Microsoft.Owin.Security.Cookies.xml
 C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\bin\Debug\netcoreapp3.1\fr\EntityFramework.resources.dll
-C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\obj\Debug\netcoreapp3.1\Alltech.Api.csprojAssemblyReference.cache
-C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\obj\Debug\netcoreapp3.1\Alltech.Api.AssemblyInfoInputs.cache
-C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\obj\Debug\netcoreapp3.1\Alltech.Api.AssemblyInfo.cs
-C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\obj\Debug\netcoreapp3.1\Alltech.Api.csproj.CoreCompileInputs.cache
-C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\obj\Debug\netcoreapp3.1\Alltech.Api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\obj\Debug\netcoreapp3.1\staticwebassets\Alltech.Api.StaticWebAssets.Manifest.cache
 C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\obj\Debug\netcoreapp3.1\staticwebassets\Alltech.Api.StaticWebAssets.xml
 C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\obj\Debug\netcoreapp3.1\scopedcss\bundle\Alltech.Api.styles.css
@@ -173,3 +173,6 @@ C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\obj\Debug\netcoreapp3.1\Al
 C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\obj\Debug\netcoreapp3.1\Alltech.Api.dll
 C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\obj\Debug\netcoreapp3.1\Alltech.Api.pdb
 C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\obj\Debug\netcoreapp3.1\Alltech.Api.genruntimeconfig.cache
+C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Dev\source\repos\AlltechSolution\Alltech.Api\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll

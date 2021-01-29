@@ -62,9 +62,11 @@ namespace Alltech.FrontOffice.Controllers
                 //Define request data format  
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
+               
                 //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
                 HttpResponseMessage Res = await client.GetAsync("api/HomeProducts/catalogue?pageNumber= " + pageNumber);
                 //  + pageNumber + "&pageSize=" + pageSize
+                ViewBag.pageNbr = pageNumber;
                 if (Res.IsSuccessStatusCode)
                 {
                     //Storing the response details recieved from web api   
@@ -74,7 +76,7 @@ namespace Alltech.FrontOffice.Controllers
                     products = JsonConvert.DeserializeObject<List<Products>>(EmpResponse);
 
                 }
-
+               
                 return View(products);
 
             }
@@ -94,7 +96,7 @@ namespace Alltech.FrontOffice.Controllers
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
-                HttpResponseMessage Res = await client.GetAsync("api/Products/" + id);
+                HttpResponseMessage Res = await client.GetAsync("api/ProductsApi/" + id);
 
                 if (Res.IsSuccessStatusCode)
                 {

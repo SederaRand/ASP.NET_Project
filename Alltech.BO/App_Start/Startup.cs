@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Alltech.DataAccess.DataAcces;
 using Alltech.DataAccess.Context;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Cors;
 
 [assembly: OwinStartup(typeof(Alltech.BO.App_Start.Startup))]
 
@@ -16,11 +17,15 @@ namespace Alltech.BO.App_Start
     {
         public void Configuration(IAppBuilder app)
         {
+           // config.EnableCors();
             ConfigureAuth(app);
+
         }
 
         private void ConfigureAuth(IAppBuilder app)
         {
+            
+
             app.CreatePerOwinContext(AlltechContext.Create);
 
             app.CreatePerOwinContext<DataAccess.DataAcces.ApplicationUserManager>(DataAccess.DataAcces.ApplicationUserManager.Create);

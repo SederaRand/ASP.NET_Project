@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alltech.Api", "Alltech.Api\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alltech.BO", "Alltech.BO\Alltech.BO.csproj", "{41278DA3-DEE7-4420-B1D8-4F0189F96BD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alltech.FrontOffice", "Alltech.FrontOffice\Alltech.FrontOffice.csproj", "{A8686160-82CC-42AD-93ED-9A1F4173EBE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alltech.FrontOffice", "Alltech.FrontOffice\Alltech.FrontOffice.csproj", "{A8686160-82CC-42AD-93ED-9A1F4173EBE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -17,23 +18,22 @@ namespace Alltech.DataAccess.Models
         [Required]
         public string Desc_prod { get; set; }
 
-        [Required]
-        public int Category_prod { get; set; }
-
+        [Required]                     
+        public string Category_prod { get; set; }  
+       
         [Required]
         public string Images { get; set; }
-        [Required]
+
+        [Required]        
         public int Quantity_prod { get; set; }
+
         [Required]
         public Boolean Status_prod { get; set; }
 
         [Required]
-        public decimal Price_prod { get; set; }
+        public decimal Price_prod { get; set; }      
        
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime Date_entry_Prod { get; set; }
-
-
+       
+       
     }
 }

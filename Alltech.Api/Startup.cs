@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,7 @@ namespace Alltech.Api
 {
     public class Startup
     {
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
+       
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -31,15 +31,8 @@ namespace Alltech.Api
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddCors(options => {
-                options.AddPolicy(name: MyAllowSpecificOrigins, builder =>
-                {
-                    builder.AllowAnyOrigin()
-                            .AllowAnyMethod()
-                            .AllowAnyHeader();
-                });
-            });
+        {          
+          
             services.AddDbContext<ApiContext>(options =>
                       options.UseSqlServer(Configuration.GetConnectionString("apiContext")));
             services.AddHttpContextAccessor();
@@ -50,7 +43,11 @@ namespace Alltech.Api
                 var uri = string.Concat(request.Scheme, "://", request.Host.ToUriComponent());
                 return new UriService(uri);
             });
-            services.AddControllers();
+
+            services.AddControllers()
+     .AddNewtonsoftJson(options =>
+     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+ );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,15 +61,11 @@ namespace Alltech.Api
             }
 
             app.UseHttpsRedirection();
-
-            // Shows UseCors with CorsPolicyBuilder.    
-
-            app.UseCors("MyAllowSpecificOrigins"); // allow 
-
+          
             app.UseRouting();    
 
             app.UseAuthorization();
-
+           
 
             app.UseEndpoints(endpoints =>
             {

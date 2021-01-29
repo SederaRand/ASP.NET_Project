@@ -36,8 +36,8 @@
                 <div class="row m-sm-0">
                     <div class="col-sm-10 order-1 order-sm-2">
                         <div class="owl-carousel product-slider" data-slider-id="1">
-                            <a class="d-block" href="@Html.DisplayFor(modelItem => Model.Images)" data-lightbox="product" title="Product item 1">
-                                <img class="img-fluid" src="@Html.DisplayFor(modelItem => Model.Images)" alt="...">
+                            <a class="d-block" href="@Html.DisplayFor(modelItem => Model.Images)" data-lightbox="product">
+                                <img class="img-fluid" src="@Html.DisplayFor(modelItem => Model.Images)" ..">
                             </a>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                     <div class="col-sm-3 pl-sm-0"><a class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" href="cart.html">Add to cart</a></div>
                 </div><a class="btn btn-link text-dark p-0 mb-4" href="#"><i class="far fa-heart mr-2"></i>Add to wish list</a><br>
                 <ul class="list-unstyled small d-inline-block">
-                     <li class="px-3 py-2 mb-1 bg-white text-muted"><strong class="text-uppercase text-dark">Category:</strong><a class="reset-anchor ml-2" href="#">@Html.DisplayNameFor(model => model.Category_prod)</a></li>
+                     <li class="px-3 py-2 mb-1 bg-white text-muted"><strong class="text-uppercase text-dark">Category:</strong><a class="reset-anchor ml-2" href="#"> @Html.DisplayFor(model => model.Category_prod)</a></li>
                    
                 </ul>
             </div>

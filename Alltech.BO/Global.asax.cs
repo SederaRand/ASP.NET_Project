@@ -10,6 +10,7 @@ namespace Alltech.BO
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -18,6 +19,8 @@ namespace Alltech.BO
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
-      
+       
+
+
     }
 }

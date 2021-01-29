@@ -1,6 +1,5 @@
-﻿using Alltech.BO.Cors;
+﻿using Alltech.BO.Models;
 using Alltech.DataAccess.Models;
-using Microsoft.AspNetCore.Cors;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,20 +13,42 @@ using System.Web.Mvc;
 
 namespace Alltech.BO.Controllers
 {
-    [Microsoft.AspNetCore.Cors.EnableCors("_myAllowSpecificOrigins")]
+    
     public class ProductsController : Controller
     {
         string baseUrl = "https://localhost:44352/";
 
-           
-        [HttpGet]
-        [Microsoft.AspNetCore.Cors.DisableCors]
-        public ActionResult Index()
+
+        public async Task<ActionResult> Index()
         {
-            return View();
-        }
-        // GET: Products
-        
+            List<Products> products = new List<Products>();
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseUrl);
+
+                client.DefaultRequestHeaders.Clear();
+                //Define request data format  
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
+                HttpResponseMessage Res = await client.GetAsync("api/ProductsApi");
+                if (Res.IsSuccessStatusCode)
+                {
+                    //Storing the response details recieved from web api   
+                    var EmpResponse = Res.Content.ReadAsStringAsync().Result;
+
+                    //Deserializing the response recieved from web api and storing into the Employee list  
+                    products = JsonConvert.DeserializeObject<List<Products>>(EmpResponse);
+
+                }
+
+                return View(products);
+
+            }
+        }        
+       
+
         public async Task<ActionResult> Details(int id)
         {
             Products products = new Products();
@@ -42,7 +63,7 @@ namespace Alltech.BO.Controllers
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
-                HttpResponseMessage Res = await client.GetAsync("api/Products/" + id);
+                HttpResponseMessage Res = await client.GetAsync("api/ProductsApi/" + id);
 
                 if (Res.IsSuccessStatusCode)
                 {
@@ -73,7 +94,7 @@ namespace Alltech.BO.Controllers
                 client.BaseAddress = new Uri(baseUrl);
 
                 //HTTP POST
-                var postTask = client.PostAsJsonAsync<Products>("api/Products/", product);
+                var postTask = client.PostAsJsonAsync<Products>("api/ProductsApi/", product);
                 postTask.Wait();
 
                 var result = postTask.Result;
@@ -88,11 +109,12 @@ namespace Alltech.BO.Controllers
             return View(product);
         }
 
-
+        [HttpGet]
         public async Task<ActionResult> Edit(int id)
         {
-            Products products = null;
-
+          
+            Products products = new Products();
+            
             using (var client = new HttpClient())
             {
                 //Passing service base url  
@@ -101,7 +123,7 @@ namespace Alltech.BO.Controllers
                 client.DefaultRequestHeaders.Clear();
 
                 //HTTP GET
-                var responseTask = client.GetAsync("api/Products/" + id);
+                var responseTask = client.GetAsync("api/ProductsApi/"+ id);
                 responseTask.Wait();
 
                 var Res = responseTask.Result;
@@ -119,22 +141,32 @@ namespace Alltech.BO.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Edit(Products product, int Id)
+        public  ActionResult Edit(int id, Products products)
         {
-            Products products = new Products();
+
             using (var client = new HttpClient())
             {
                 //Passing service base url  
                 client.BaseAddress = new Uri(baseUrl);
 
-                HttpResponseMessage response = await client.PutAsJsonAsync("api/Products/" + Id, product);
-                response.EnsureSuccessStatusCode();
+                client.DefaultRequestHeaders.Clear();
+                //Define request data format  
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                product = await response.Content.ReadAsAsync<Products>();
+                //HTTP POST
+                var putTask = client.PutAsJsonAsync<Products>("api/ProductsApi/" +id , products);
+                putTask.Wait();
 
-                return RedirectToAction("Index");
+                var result = putTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
             }
 
+            ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+
+            return View(products);
         }
 
 
@@ -146,7 +178,7 @@ namespace Alltech.BO.Controllers
                 client.BaseAddress = new Uri(baseUrl);
 
                 //HTTP DELETE
-                var deleteTask = client.DeleteAsync("api/Products/" + id.ToString());
+                var deleteTask = client.DeleteAsync("api/ProductsApi/" + id.ToString());
                 deleteTask.Wait();
 
                 var result = deleteTask.Result;
