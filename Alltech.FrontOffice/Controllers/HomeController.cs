@@ -53,6 +53,9 @@ namespace Alltech.FrontOffice.Controllers
         {
             //?pageNumber=2&pageSize=2
             List<Products> products = new List<Products>();
+            ViewBag.PageNumber = pageNumber;
+            ViewBag.PageSize = pageSize;
+
 
             using (var client = new HttpClient())
             {
@@ -65,8 +68,9 @@ namespace Alltech.FrontOffice.Controllers
                
                 //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
                 HttpResponseMessage Res = await client.GetAsync("api/HomeProducts/catalogue?pageNumber= " + pageNumber);
-                //  + pageNumber + "&pageSize=" + pageSize
-                ViewBag.pageNbr = pageNumber;
+
+                
+
                 if (Res.IsSuccessStatusCode)
                 {
                     //Storing the response details recieved from web api   

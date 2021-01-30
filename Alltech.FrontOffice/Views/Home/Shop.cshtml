@@ -15,7 +15,7 @@
                         <!-- Link--><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <!-- Link--><a class="nav-link active" asp-controller="Home" asp-action="Shop">Shop</a>
+                        <!-- Link--><a class="nav-link active" asp-controller="Home" asp-action="Shop" asp-route-pageNumber="1" asp-route-pageSize="2">Shop</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
@@ -112,9 +112,16 @@
                         <ul class="pagination justify-content-center justify-content-lg-end">
 
                             <li class="page-item"><a class="page-link" aria-label="Previous" asp-action="Shop" asp-route-pageNumber="1" asp-route-pageSize="2"><span aria-hidden="true">«</span></a></li>
-                          
-                            <li class="page-item active"><a class="page-link" asp-route-pageNumber="1" asp-route-pageSize="2">1</a></li>
-                            <li class="page-item"><a class="page-link" asp-action="Shop" asp-route-pageNumber="2" asp-route-pageSize="2">2</a></li>
+                          @for (int i = 1; i <= @ViewBag.PageSize; i ++ )
+                          {
+                              string className = "";
+                              if(i == ViewBag.PageNumber)
+                              {
+                                  className = "active";
+                              }
+                            <li class="page-item @className"><a class="page-link" asp-route-pageNumber="@i" asp-route-pageSize="2">@i</a></li>
+                            
+                          }
                             <li class="page-item"><a class="page-link" asp-action="Shop" asp-route-pageNumber="2" asp-route-pageSize="2" asparia-label="Next"><span aria-hidden="true">»</span></a></li>
 
                         </ul>
