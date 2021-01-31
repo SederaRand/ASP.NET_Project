@@ -191,5 +191,36 @@ namespace Alltech.BO.Controllers
 
             return RedirectToAction("Index");
         }
+
+
+        public async Task<ActionResult> Search(string name)
+        {
+            List<Products> products = new List<Products>();
+
+            using (var client = new HttpClient())
+            {
+                //Passing service base url  
+                client.BaseAddress = new Uri(baseUrl);
+
+                client.DefaultRequestHeaders.Clear();
+                //Define request data format  
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
+                HttpResponseMessage Res = await client.GetAsync("api/ProductsApi/search?name=" + name);
+
+                if (Res.IsSuccessStatusCode)
+                {
+                    //Storing the response details recieved from web api   
+                    var EmpResponse = Res.Content.ReadAsStringAsync().Result;
+
+                    //Deserializing the response recieved from web api and storing into the Employee list  
+                    products = JsonConvert.DeserializeObject<List<Products>>(EmpResponse);
+
+                }
+                return View(products);
+            }
+
+        }
     }
 }

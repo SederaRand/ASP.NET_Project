@@ -133,6 +133,21 @@ namespace Alltech.Api.Controllers
         {
             return _context.Products.Any(e => e.Id_prod == id);
         }
-     
+
+        [HttpGet("search")]
+        public async Task<ActionResult<IEnumerable<Products>>> Search(string name)
+        {
+            IQueryable<Products> query = _context.Products;
+            query = query.Where(e => e.Name_prod.Contains(name));
+            var products = await query.ToListAsync();
+
+            if (products == null)
+            {
+                return NotFound();
+            }
+
+            return products;
+        }
+
     }
 }
